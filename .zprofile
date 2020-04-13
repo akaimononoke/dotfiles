@@ -1,7 +1,5 @@
 #!/bin/zsh
-if [ -f ${HOME}/.zshrc ]; then
-	. ${HOME}/.zshrc
-fi
+[ -f ${HOME}/.zshrc ] && . ${HOME}/.zshrc
 
 # Pyenv
 export PYENV_ROOT=/usr/local/var/pyenv
