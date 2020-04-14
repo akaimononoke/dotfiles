@@ -1,5 +1,7 @@
 #!/bin/zsh
-[ -f ${HOME}/.zshrc ] && . ${HOME}/.zshrc
+ZPROFILE="${HOME}/.zprofile"
+ZSHRC="${HOME}/.zshrc"
+[ -f ${ZSHRC} ] && . ${ZSHRC}
 
 # Pyenv
 export PYENV_ROOT=/usr/local/var/pyenv
@@ -15,11 +17,12 @@ export GOSRC="${GOPATH}/src"
 export PATH="${PATH}:${GOBIN}"
 
 # Git Repository
-export GIT_ALGO="${GOSRC}/github.com/algo"
-export GIT_SHCONF="${GOSRC}/github.com/shconf"
+export GITHUB="${GOSRC}/github.com"
+export GITHUB_ALGO="${GITHUB}/algo"
+export GITHUB_SHCONF="${GITHUB}/shconf"
 
 # Shell Configuration
-export SHELL_CONFIGS="${GIT_SHCONF}/conf"
+export SHELL_CONFIGS="${GITHUB_SHCONF}/conf"
 
 # Load Profiles
 for FILE in $(ls ${SHELL_CONFIGS}); do

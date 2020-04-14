@@ -1,14 +1,11 @@
 #!/bin/zsh
-alias zp='. ${HOME}/.zprofile'
+alias zp='. ${ZPROFILE}'
 alias ll='ls -l'
-alias shconf='shconf'
+alias confsh='confsh'
 
-function shconf() {
-	local CURDIR=$(pwd)
-	cd ${GIT_SHCONF}
-	./setup.sh
-	cd ${CURDIR}
-	. ${HOME}/.zprofile
+function confsh() {
+	zsh ${GITHUB_SHCONF}/setup.sh
+	. ${ZPROFILE}
 }
 
 function bar() {
