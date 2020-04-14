@@ -15,8 +15,8 @@ export GOSRC="${GOPATH}/src"
 export PATH="${PATH}:${GOBIN}"
 
 # Git Repository
-export GIT_ALGO="${GOSRC}/algo"
-export GIT_SHCONF="${GOSRC}/shconf"
+export GIT_ALGO="${GOSRC}/github.com/algo"
+export GIT_SHCONF="${GOSRC}/github.com/shconf"
 
 # Shell Configuration
 export SHELL_CONFIGS="${GIT_SHCONF}/conf"
