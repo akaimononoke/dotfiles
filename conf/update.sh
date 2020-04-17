@@ -21,7 +21,7 @@ function update_python() {
 	local CUR=$(pyenv version | sed 's/\(^[0-9.]*\).*/\1/')
 	local NEW=$(pyenv install -l | sed 's/^  //g' | egrep '^[0-9.]*$' | tail -n 1)
 
-	if [[ "${CUR}" != "${NEW}" ]]; then
+	if [[ "${CUR}" != "" ]] && [[ "${NEW}" != "" ]] && [[ "${CUR}" != "${NEW}" ]]; then
 		pyenv install "${NEW}"
 		pyenv global "${NEW}"
 	fi
