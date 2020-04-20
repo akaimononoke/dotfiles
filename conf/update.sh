@@ -1,23 +1,23 @@
 alias ua='update_all'
 
 function update_all() {
-	bar "=" 90 "Updating Homebrew..."
-	update_homebrew
-	bar "=" 90
-
-	bar "=" 90 "Updating Python..."
-	update_python
-	bar "="
+	update_homebrew && update_python
 }
 
 function update_homebrew() {
-	bar "-" 80 "Removing outdated formulas..."
-	brew cleanup -n
-	bar "-" 80 "Updating packages..."
+	message "Updating Homebrew..."
+
+	message "Removing outdated formulas..."
+	brew cleanup
+	message "Updating packages..."
 	brew upgrade
+
+	message "Completed."
 }
 
 function update_python() {
+	message "Updating Python..."
+
 	local CUR=$(pyenv version | sed 's/\(^[0-9.]*\).*/\1/')
 	local NEW=$(pyenv install -l | sed 's/^  //g' | egrep '^[0-9.]*$' | tail -n 1)
 
@@ -25,6 +25,8 @@ function update_python() {
 		pyenv install "${NEW}"
 		pyenv global "${NEW}"
 	fi
+
+	message "Completed."
 }
 
 function update_onload() {

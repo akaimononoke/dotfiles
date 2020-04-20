@@ -13,7 +13,12 @@ function bar() {
 	local N="$2"
 	local MESSAGE="$3"
 	printf "%${N}s\n" | sed "s/ /${REP}/g"
-	[[ "${MESSAGE}" != "" ]] && printf "$(color bold)${MESSAGE}$(color)\n"
+	[[ "${MESSAGE}" != "" ]] && message "${MESSAGE}"
+}
+
+function message() {
+	local MESSAGE="$1"
+	printf "$(color bold)${MESSAGE}$(color)\n"
 }
 
 function now() {
