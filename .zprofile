@@ -16,6 +16,10 @@ export GOPKG="${GOPATH}/pkg"
 export GOSRC="${GOPATH}/src"
 export PATH="${PATH}:${GOBIN}"
 
+# Rust
+export CARGO_HOME="${HOME}/.cargo"
+export PATH="${PATH}:${CARGO_HOME}/bin"
+
 # Git Repository
 export GITHUB="${GOSRC}/github.com"
 export GITHUB_ALGO="${GITHUB}/algo"
