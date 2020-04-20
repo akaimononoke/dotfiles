@@ -1,6 +1,6 @@
 #!/bin/zsh
 alias zp='. ${ZPROFILE}'
-alias ll='ls -l'
+alias ll='ls -la'
 alias confsh='confsh'
 
 function confsh() {
