@@ -4,8 +4,8 @@ ZSHRC="${HOME}/.zshrc"
 [ -f ${ZSHRC} ] && . ${ZSHRC}
 
 # Pyenv
-export PYENV_ROOT=/usr/local/var/pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
+export PYENV_ROOT="/usr/local/var/pyenv"
+if command -v pyenv -v 1>/dev/null 2>&1; then
 	eval "$(pyenv init -)"
 fi
 
@@ -25,10 +25,10 @@ export GITHUB="${GOSRC}/github.com"
 export GITHUB_ALGO="${GITHUB}/algo"
 export GITHUB_SHCONF="${GITHUB}/shconf"
 
-# Shell Configuration
-export SHELL_CONFIGS="${GITHUB_SHCONF}/conf"
+realpath
 
 # Load Profiles
-for FILE in $(ls ${SHELL_CONFIGS}); do
-	. ${SHELL_CONFIGS}/${FILE}
+export SHCONF_LIST_DIR="${GITHUB_SHCONF}/conf"
+for CONF in $(ls ${SHCONF_LIST_DIR}/* | realpath); do
+	. ${CONF}
 done
