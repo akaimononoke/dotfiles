@@ -5,7 +5,8 @@ ZSHRC="${HOME}/.zshrc"
 
 # Pyenv
 export PYENV_ROOT="/usr/local/var/pyenv"
-if command -v pyenv -v 1>/dev/null 2>&1; then
+export PATH="${PATH}:${PYENV_ROOT}/bin"
+if command -v pyenv 1>/dev/null 2>&1; then
 	eval "$(pyenv init -)"
 fi
 
@@ -24,8 +25,6 @@ export PATH="${PATH}:${CARGO_HOME}/bin"
 export GITHUB="${GOSRC}/github.com"
 export GITHUB_ALGO="${GITHUB}/algo"
 export GITHUB_SHCONF="${GITHUB}/shconf"
-
-realpath
 
 # Load Profiles
 export SHCONF_LIST_DIR="${GITHUB_SHCONF}/conf"
