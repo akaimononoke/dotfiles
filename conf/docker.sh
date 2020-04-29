@@ -1,7 +1,8 @@
 alias dobuild='docker-compose build'
-alias doup='docker-compose up -d'
 alias dodown='docker-compose down'
+alias dops='docker ps'
 alias dossh='docker_ssh'
+alias doup='docker-compose up -d'
 
 function docker_ssh() {
     local CONTAINER_NAME="$1"
