@@ -3,6 +3,9 @@ ZPROFILE="${HOME}/.zprofile"
 ZSHRC="${HOME}/.zshrc"
 [ -f ${ZSHRC} ] && . ${ZSHRC}
 
+# Prompt
+export PROMPT="%n@%m %F{4}%~%F{sgr0} $ "
+
 # Pyenv
 export PYENV_ROOT="/usr/local/var/pyenv"
 export PATH="${PATH}:${PYENV_ROOT}/bin"

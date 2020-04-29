@@ -3,6 +3,13 @@ alias zp='. ${ZPROFILE}'
 alias ll='ls -la'
 alias confsh='confsh'
 
+# Setup zsh-completions
+if type brew &>/dev/null; then
+	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+	autoload -Uz compinit
+	compinit
+fi
+
 function confsh() {
 	zsh ${GITHUB_SHCONF}/setup.sh
 	. ${ZPROFILE}
