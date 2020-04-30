@@ -10,15 +10,20 @@ export CHAR_BOLD=$(tput bold)
 export CHAR_UNSET=$(tput sgr0)
 
 function color() {
-	case "$1" in
-	black | bl) printf ${CHAR_BLACK} ;;
-	red | r) printf ${CHAR_RED} ;;
-	green | g) printf ${CHAR_GREEN} ;;
-	blue | b) printf ${CHAR_BLUE} ;;
-	magenta | m) printf ${CHAR_MAGENTA} ;;
-	cyan | c) printf ${CHAR_CYAN} ;;
-	white | w) printf ${CHAR_WHITE} ;;
-	bold) printf ${CHAR_BOLD} ;;
-	*) printf ${CHAR_UNSET} ;;
-	esac
+	if [ $# -eq 0 ]; then
+		printf ${CHAR_UNSET}
+		return 0
+	fi
+	for ARG in $*; do
+		case "${ARG}" in
+		black | bl) printf ${CHAR_BLACK} ;;
+		red | r) printf ${CHAR_RED} ;;
+		green | g) printf ${CHAR_GREEN} ;;
+		blue | b) printf ${CHAR_BLUE} ;;
+		magenta | m) printf ${CHAR_MAGENTA} ;;
+		cyan | c) printf ${CHAR_CYAN} ;;
+		white | w) printf ${CHAR_WHITE} ;;
+		bold) printf ${CHAR_BOLD} ;;
+		esac
+	done
 }

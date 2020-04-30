@@ -1,13 +1,50 @@
 #!/bin/zsh
-# *** aliases ***
+# profiles
+ZPROFILE="${HOME}/.zprofile"
+ZSHRC="${HOME}/.zshrc"
+
+# prompt
+export PROMPT="%n@%m %F{4}%~%F{sgr0} $ "
+
+# zsh-completions
+if type brew &>/dev/null; then
+	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+	autoload -U compinit
+	compinit -u
+fi
+
+# pyenv
+export PYENV_ROOT="/usr/local/var/pyenv"
+export PATH="${PATH}:${PYENV_ROOT}/bin"
+if command -v pyenv 1>/dev/null 2>&1; then
+	eval "$(pyenv init -)"
+fi
+
+# go
+export GOPATH="$(go env GOPATH)"
+export GOBIN="$(go env GOBIN)"
+export GOPKG="${GOPATH}/pkg"
+export GOSRC="${GOPATH}/src"
+export PATH="${PATH}:${GOBIN}"
+
+# rust
+export CARGO_HOME="${HOME}/.cargo"
+export PATH="${PATH}:${CARGO_HOME}/bin"
+
+# git
+export GITHUB="${GOSRC}/github.com"
+export YAKAMON="${GITHUB}/yakamon"
+export ALGO="${YAKAMON}/algo"
+export SHCONF="${YAKAMON}/shconf"
+
+# ***** aliases *****
 alias zp='. ${ZPROFILE}'
 alias ll='ls -la'
-alias confsh='confsh'
-# *** aliases ***
+# ***** aliases *****
 
-# *** functions ***
+# ***** functions *****
 function confsh() {
-	zsh ${YAKAMON_SHCONF}/setup.sh
+	zsh ${SHCONF}/setup.sh
 	. ${ZPROFILE}
 }
 
@@ -52,60 +89,16 @@ function bar() {
 
 function message() {
 	local MESSAGE="$1"
-	printf "$(color bold)${MESSAGE}$(color)\n"
+	local COLOR="$2"
+	printf "${COLOR}${MESSAGE}$(color)\n"
 }
 
 function now() {
 	date '+%Y-%m-%d %H:%M:%S'
 }
-# *** functions ***
-
-# profiles
-ZPROFILE="${HOME}/.zprofile"
-ZSHRC="${HOME}/.zshrc"
-
-# prompt
-export PROMPT="%n@%m %F{4}%~%F{sgr0} $ "
-
-# zsh-completions
-if type brew &>/dev/null; then
-	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-	autoload -U compinit
-	compinit -u
-fi
-
-# pyenv
-export PYENV_ROOT="/usr/local/var/pyenv"
-export PATH="${PATH}:${PYENV_ROOT}/bin"
-if command -v pyenv 1>/dev/null 2>&1; then
-	eval "$(pyenv init -)"
-fi
-
-# go
-export GOPATH="$(go env GOPATH)"
-export GOBIN="$(go env GOBIN)"
-export GOPKG="${GOPATH}/pkg"
-export GOSRC="${GOPATH}/src"
-export PATH="${PATH}:${GOBIN}"
-
-# rust
-export CARGO_HOME="${HOME}/.cargo"
-export PATH="${PATH}:${CARGO_HOME}/bin"
-
-# git
-export GITHUB="${GOSRC}/github.com"
-
-export OWHIRATA="${GITHUB}/ow-hirata"
-
-export VORKERS="${GITHUB}/vorkers"
-export VORKERS_VORKERS_COM="${VORKERS}/vorkers-com"
-
-export YAKAMON="${GITHUB}/yakamon"
-export YAKAMON_ALGO="${GITHUB}/yakamon/algo"
-export YAKAMON_SHCONF="${GITHUB}/yakamon/shconf"
+# ***** functions *****
 
 # load profiles
-export SHCONF_LIST_DIR="${YAKAMON_SHCONF}/conf"
-for CONF in $(ls ${SHCONF_LIST_DIR}/* | realpath); do
-	. ${CONF}
+for C in $(ls ${SHCONF}/conf/* | realpath); do
+	. ${C}
 done

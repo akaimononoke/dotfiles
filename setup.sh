@@ -1,3 +1,3 @@
 #!/bin/zsh
-cp ${GITHUB_SHCONF}/.zprofile ${HOME}/.zprofile
-cp ${GITHUB_SHCONF}/.zshrc ${HOME}/.zshrc
+cp ${SHCONF}/.zprofile ${HOME}/.zprofile
+cp ${SHCONF}/.zshrc ${HOME}/.zshrc
