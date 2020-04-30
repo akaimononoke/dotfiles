@@ -16,7 +16,7 @@ function color() {
 	fi
 	for ARG in $*; do
 		case "${ARG}" in
-		black | bl) printf ${CHAR_BLACK} ;;
+		black | bk) printf ${CHAR_BLACK} ;;
 		red | r) printf ${CHAR_RED} ;;
 		green | g) printf ${CHAR_GREEN} ;;
 		blue | b) printf ${CHAR_BLUE} ;;
