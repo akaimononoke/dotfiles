@@ -1,4 +1,8 @@
 #!/bin/zsh
+alias zp='. ${ZPROFILE}'
+alias ll='ls -la'
+alias confsh='zsh ${SHCONF}/setup.sh && . ${ZPROFILE}'
+
 # profiles
 ZPROFILE="${HOME}/.zprofile"
 ZSHRC="${HOME}/.zshrc"
@@ -37,68 +41,10 @@ export YAKAMON="${GITHUB}/yakamon"
 export ALGO="${YAKAMON}/algo"
 export SHCONF="${YAKAMON}/shconf"
 
-# ***** aliases *****
-alias zp='. ${ZPROFILE}'
-alias ll='ls -la'
-# ***** aliases *****
-
-# ***** functions *****
-function confsh() {
-	zsh ${SHCONF}/setup.sh
-	. ${ZPROFILE}
-}
-
-function realpath() {
-	function realpath_inner() {
-		local P="$@"
-		local BASE
-		local DIR
-		if [ -f "${P}" ]; then
-			BASE="/$(basename "${P}")"
-			DIR="$(dirname "${P}")"
-		elif [ -d "${P}" ]; then
-			DIR="${P}"
-		fi
-		DIR="$(cd "${DIR}" && pwd)"
-		echo "${DIR}${BASE}"
-	}
-
-	local ARGS
-	if [ -p /dev/stdin ]; then
-		if [[ "$(echo $@)" == "" ]]; then
-			ARGS=($(cat -))
-		else
-			ARGS=($@)
-		fi
-	else
-		ARGS=($@)
-	fi
-
-	for P in ${ARGS[*]}; do
-		realpath_inner ${P}
-	done
-}
-
-function bar() {
-	local REP="$1"
-	local N="$2"
-	local MESSAGE="$3"
-	printf "%${N}s\n" | sed "s/ /${REP}/g"
-	[[ "${MESSAGE}" != "" ]] && message "${MESSAGE}"
-}
-
-function message() {
-	local MESSAGE="$1"
-	local COLOR="$2"
-	printf "${COLOR}${MESSAGE}$(color)\n"
-}
-
-function now() {
-	date '+%Y-%m-%d %H:%M:%S'
-}
-# ***** functions *****
-
-# load profiles
-for C in $(ls ${SHCONF}/conf/* | realpath); do
-	. ${C}
+# load
+for FILE in $(ls ${SHCONF}/conf/*); do
+	. "${SHCONF}/conf/${FILE}"
 done
+
+# update
+update_onload

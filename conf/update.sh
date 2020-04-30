@@ -94,6 +94,3 @@ function update_onload() {
 		echo "${TODAY}" >>${UPDATE_HISTORY}
 	fi
 }
-
-# Run on load
-update_onload
