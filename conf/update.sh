@@ -43,7 +43,7 @@ function update_pip() {
 	message "[pip]" $(color bold blue)
 
 	message "Updating pip itself..." $(color blue)
-	sudo python -m pip install --upgrade pip
+	python -m pip install --upgrade pip
 
 	message "Updating pip modules..." $(color blue)
 	local OUTDATED_MODULES=($(pip_list_outdated))
@@ -52,7 +52,7 @@ function update_pip() {
 	else
 		message "Modules to be updated: ${OUTDATED_MODULES[*]}"
 		for MODULE in ${OUTDATED_MODULES[*]}; do
-			sudo pip install -U "${MODULE}"
+			pip install -U "${MODULE}"
 		done
 	fi
 
@@ -60,7 +60,7 @@ function update_pip() {
 	local BROKEN_DEPENDENCIES=($(pip_check))
 	while [ ${#BROKEN_DEPENDENCIES[*]} -gt 0 ]; do
 		for MODULE in ${BROKEN_DEPENDENCIES[*]}; do
-			sudo pip install ${MODULE}
+			pip install ${MODULE}
 		done
 		BROKEN_DEPENDENCIES=($(pip_check))
 	done
@@ -72,11 +72,11 @@ function update_pip() {
 }
 
 function pip_list_outdated() {
-	sudo pip list -o --format=freeze --disable-pip-version-check --no-python-version-warning | sed 's/==.*//g'
+	pip list -o --format=freeze --disable-pip-version-check --no-python-version-warning | sed 's/==.*//g'
 }
 
 function pip_check() {
-	sudo pip check --disable-pip-version-check --no-python-version-warning | awk -F ' ' '{print $5}' | sed 's/,//g'
+	pip check --disable-pip-version-check --no-python-version-warning | awk -F ' ' '{print $5}' | sed 's/,//g'
 }
 
 function update_onload() {

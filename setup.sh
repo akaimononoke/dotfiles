@@ -1,3 +1,3 @@
 #!/bin/zsh
-cp ${SHCONF}/.zprofile ${HOME}/.zprofile
-cp ${SHCONF}/.zshrc ${HOME}/.zshrc
+cp ${YAKAMON_SHCONF}/.zprofile ${HOME}/.zprofile
+cp ${YAKAMON_SHCONF}/.zshrc ${HOME}/.zshrc

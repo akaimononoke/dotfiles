@@ -1,27 +1,17 @@
-#!/bin/zsh
-alias zp='. ${ZPROFILE}'
+alias zp='. ${ZPROFILE} && . ${ZSHRC}'
 alias ll='ls -la'
-alias confsh='zsh ${SHCONF}/setup.sh && . ${ZPROFILE}'
+alias confsh='zsh ${YAKAMON_SHCONF}/setup.sh && exec ${SHELL} -l'
 
-# profiles
-ZPROFILE="${HOME}/.zprofile"
-ZSHRC="${HOME}/.zshrc"
-
-# prompt
+export LANG="en_GB.UTF-8"
 export PROMPT="%n@%m %F{4}%~%F{sgr0} $ "
+export ZPROFILE="${HOME}/.zprofile"
+export ZSHRC="${HOME}/.zshrc"
 
 # zsh-completions
 if type brew &>/dev/null; then
-	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+	FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
 	autoload -U compinit
 	compinit -u
-fi
-
-# pyenv
-export PYENV_ROOT="/usr/local/var/pyenv"
-export PATH="${PATH}:${PYENV_ROOT}/bin"
-if command -v pyenv 1>/dev/null 2>&1; then
-	eval "$(pyenv init -)"
 fi
 
 # go
@@ -31,6 +21,13 @@ export GOPKG="${GOPATH}/pkg"
 export GOSRC="${GOPATH}/src"
 export PATH="${PATH}:${GOBIN}"
 
+# pyenv
+export PYENV_ROOT="/usr/local/var/pyenv"
+export PATH="${PATH}:${PYENV_ROOT}/bin"
+if type pyenv &>/dev/null; then
+	eval "$(pyenv init -)"
+fi
+
 # rust
 export CARGO_HOME="${HOME}/.cargo"
 export PATH="${PATH}:${CARGO_HOME}/bin"
@@ -38,13 +35,15 @@ export PATH="${PATH}:${CARGO_HOME}/bin"
 # git
 export GITHUB="${GOSRC}/github.com"
 export YAKAMON="${GITHUB}/yakamon"
-export ALGO="${YAKAMON}/algo"
-export SHCONF="${YAKAMON}/shconf"
+export YAKAMON_ALGO="${YAKAMON}/algo"
+export YAKAMON_SHCONF="${YAKAMON}/shconf"
 
-# load
-for FILE in $(ls ${SHCONF}/conf/*); do
-	. "${SHCONF}/conf/${FILE}"
+# load profiles
+for FILE in $(ls ${YAKAMON_SHCONF}/conf/*); do
+	. ${FILE}
 done
 
 # update
-update_onload
+if type update_onload &>/dev/null; then
+	update_onload
+fi
