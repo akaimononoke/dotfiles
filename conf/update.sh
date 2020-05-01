@@ -4,13 +4,11 @@ UPDATE_HISTORY="${HOME}/.update_history"
 PIP_MODULES="${HOME}/.pip_modules"
 
 function update_all() {
-	message "*** UPDATE ***" $(color bold blue)
-
-	update_homebrew &&
+	message "*** UPDATE ***" $(color bold blue) &&
+		update_homebrew &&
 		update_python &&
-		update_pip
-
-	message "*** UPDATE ***" $(color bold blue)
+		# update_pip &&
+		message "*** UPDATE ***" $(color bold blue)
 }
 
 function update_homebrew() {
