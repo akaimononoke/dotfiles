@@ -37,6 +37,7 @@ export GITHUB="${GOSRC}/github.com"
 export YAKAMON="${GITHUB}/yakamon"
 export YAKAMON_ALGO="${YAKAMON}/algo"
 export YAKAMON_SHCONF="${YAKAMON}/shconf"
+export PATH="${PATH}:${YAKAMON_SHCONF}/bin"
 
 # load profiles
 for FILE in $(ls ${YAKAMON_SHCONF}/conf/*); do
