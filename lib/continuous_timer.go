@@ -56,6 +56,6 @@ func main() {
 	for {
 		time.Sleep(interval * unit)
 		cumulativeDuration += interval
-		exec.Command("terminal-notifier", "-message", getNotifyText(cumulativeDuration / interval, unit), "-sound", "Glass").Run()
+		exec.Command("terminal-notifier", "-message", getNotifyText(cumulativeDuration, unit), "-sound", "Glass").Run()
 	}
 }
