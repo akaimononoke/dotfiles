@@ -8,6 +8,10 @@ import (
 	"time"
 )
 
+const (
+	cmdName  = "Continuous Timer"
+)
+
 func timeunitToString(unit time.Duration) string {
 	switch unit {
 	case time.Second:
@@ -20,8 +24,13 @@ func timeunitToString(unit time.Duration) string {
 	return ""
 }
 
-func getNotifyText(cumulativeDuration time.Duration, unit time.Duration) string {
-	return fmt.Sprintf("%d %s have elapsed", cumulativeDuration, timeunitToString(unit))
+func terminalNotifier(message, sound string) *exec.Cmd {
+	args := []string{
+		"-title", cmdName,
+		"-message", message,
+		"-sound", sound,
+	}
+	return exec.Command("terminal-notifier", args...)
 }
 
 func main() {
@@ -52,13 +61,13 @@ func main() {
 		fmt.Errorf("interval unit should be either s[seconds], m[minutes], h[hours]: %v", unitStr)
 	}
 
-	exec.Command("terminal-notifier", "-message", fmt.Sprintf("You will be notified every %d %s", interval, timeunitToString(unit)), "-sound", "Bosso").Run()
+	terminalNotifier(fmt.Sprintf("You will be notified every %d %s.", interval, timeunitToString(unit)), "Bosso").Run()
 
 	var cumulativeDuration time.Duration
 
 	for {
 		time.Sleep(interval * unit)
 		cumulativeDuration += interval
-		exec.Command("terminal-notifier", "-message", getNotifyText(cumulativeDuration, unit), "-sound", "Glass").Run()
+		terminalNotifier(fmt.Sprintf("%d %s have elapsed.", cumulativeDuration, timeunitToString(unit)), "Glass").Run()
 	}
 }
