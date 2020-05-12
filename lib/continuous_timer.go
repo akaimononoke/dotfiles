@@ -8,17 +8,20 @@ import (
 	"time"
 )
 
-func getNotifyText(cumulativeDuration time.Duration, unit time.Duration) string {
-	var unitStr string
+func timeunitToString(unit time.Duration) string {
 	switch unit {
 	case time.Second:
-		unitStr = "seconds"
+		return "seconds"
 	case time.Minute:
-		unitStr = "minutes"
+		return "minutes"
 	case time.Hour:
-		unitStr = "hours"
+		return "hours"
 	}
-	return fmt.Sprintf("%d %s have elapsed", cumulativeDuration, unitStr)
+	return ""
+}
+
+func getNotifyText(cumulativeDuration time.Duration, unit time.Duration) string {
+	return fmt.Sprintf("%d %s have elapsed", cumulativeDuration, timeunitToString(unit))
 }
 
 func main() {
@@ -49,7 +52,7 @@ func main() {
 		fmt.Errorf("interval unit should be either s[seconds], m[minutes], h[hours]: %v", unitStr)
 	}
 
-	exec.Command("terminal-notifier", "-message", "Started continuous timer", "-sound", "Bosso").Run()
+	exec.Command("terminal-notifier", "-message", fmt.Sprintf("You will be notified every %d %s", interval, timeunitToString(unit)), "-sound", "Bosso").Run()
 
 	var cumulativeDuration time.Duration
 
