@@ -10,10 +10,10 @@ alias gp='git push'             # Git Push
 alias gs='git status'           # Git Status
 
 function git_add() {
-	if [ "$1" != "" ]; then
-		git add "$1"
+	if [ "$@" != "" ]; then
+		git add $@
 	else
-		git add --all
+		git add .
 	fi
 }
 
