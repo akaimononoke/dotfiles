@@ -13,7 +13,7 @@ function git_add() {
 	if [[ "$@" != "" ]]; then
 		git add $@
 	else
-		git add .
+		git add --all
 	fi
 }
 
