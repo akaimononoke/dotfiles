@@ -10,7 +10,7 @@ alias gp='git push'             # Git Push
 alias gs='git status'           # Git Status
 
 function git_add() {
-	if [ "$@" != "" ]; then
+	if [[ "$@" != "" ]]; then
 		git add $@
 	else
 		git add .
