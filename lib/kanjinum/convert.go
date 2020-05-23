@@ -1,9 +1,9 @@
-package numjp
+package kanjinum
 
 import "math/big"
 
-// ConvertNumberToKanji converts int to string of Kanji.
-func ConvertNumberToKanji(n *big.Int) string {
+// NumToKanji converts int to string of kanji.
+func NumToKanji(n *big.Int) string {
 	digits := []string{"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"}
 	su := []string{"一", "十", "百", "千"}
 	lu := []string{"一", "万", "億", "兆", "京", "垓", "𥝱", "穣", "溝", "澗", "正", "載", "恒河沙", "阿僧祇", "那由他", "不可思議", "無量大数"}

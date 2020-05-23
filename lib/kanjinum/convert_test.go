@@ -1,4 +1,4 @@
-package numjp
+package kanjinum
 
 import (
 	"math/big"
@@ -34,7 +34,7 @@ func TestKanjiNumber(t *testing.T) {
 	}
 	for i, s := range testcases {
 		n, _ := new(big.Int).SetString(s, 10)
-		actual := ConvertNumberToKanji(n)
+		actual := NumToKanji(n)
 		if actual != expected[i] {
 			t.Errorf("KanjiNumber() is invalid: got %v, wanted %v", actual, expected[i])
 		}

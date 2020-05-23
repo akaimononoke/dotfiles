@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 )
 
-func parseArgs(args []string) []string {
+func parseArgs() []string {
 	// from pipeline
 	fileInfo, err := os.Stdin.Stat()
 	if err != nil {
@@ -44,7 +44,7 @@ func getRealpath(path string) string {
 }
 
 func main() {
-	paths := parseArgs(os.Args)
+	paths := parseArgs()
 	for _, p := range paths {
 		fmt.Println(getRealpath(p))
 	}
