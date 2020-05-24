@@ -7,3 +7,6 @@
 [submodule "lib/kanjinum"]
 	path = lib/kanjinum
 	url = git@github.com:yakamon/kanjinum
+[submodule "lib/bar"]
+	path = lib/bar
+	url = git@github.com:yakamon/bar
