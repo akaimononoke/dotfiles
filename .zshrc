@@ -32,6 +32,10 @@ fi
 export CARGO_HOME="${HOME}/.cargo"
 export PATH="${PATH}:${CARGO_HOME}/bin"
 
+# java
+export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home/bin
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
+
 # git
 export GITHUB="${GOSRC}/github.com"
 export YAKAMON="${GITHUB}/yakamon"
