@@ -7,7 +7,8 @@ function update_all() {
 	message "*** UPDATE ***" $(color bold blue) &&
 		update_homebrew &&
 		update_python &&
-		# update_pip &&
+		update_pip &&
+		# update_pip_packages &&
 		message "*** UPDATE ***" $(color bold blue)
 }
 
@@ -40,8 +41,12 @@ function update_python() {
 function update_pip() {
 	message "[pip]" $(color bold blue)
 
-	message "Updating pip itself..." $(color blue)
+	message "Upgrading pip..." $(color blue)
 	python -m pip install --upgrade pip
+}
+
+function update_pip_modules() {
+	message "[pip packages]" $(color bold blue)
 
 	message "Updating pip modules..." $(color blue)
 	local OUTDATED_MODULES=($(pip_list_outdated))
