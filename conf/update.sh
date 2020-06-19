@@ -39,7 +39,7 @@ function update_pip() {
 	message "[pip]" $(color bold blue)
 
 	message "Upgrading pip..." $(color blue)
-	python -m pip install --upgrade pip
+	python -m pip install -U pip
 
 	message "Complete." $(color blue)
 }
