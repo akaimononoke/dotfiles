@@ -15,10 +15,7 @@ function update_all() {
 function update_homebrew() {
 	message "[Homebrew]" $(color bold blue)
 
-	message "Removing outdated formulas..." $(color blue)
-	brew cleanup
-
-	message "Updating packages..." $(color blue)
+	message "Updating Homebrew and packages..." $(color blue)
 	brew upgrade
 
 	message "Complete." $(color blue)
@@ -43,6 +40,8 @@ function update_pip() {
 
 	message "Upgrading pip..." $(color blue)
 	python -m pip install --upgrade pip
+
+	message "Complete." $(color blue)
 }
 
 function update_pip_modules() {
