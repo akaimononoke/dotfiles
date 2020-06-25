@@ -1,6 +1,5 @@
-alias zp='. ${ZPROFILE} && . ${ZSHRC}'
+alias zp='zsh ${DOTFILES}/setup.sh && exec ${SHELL} -l && . ${ZPROFILE} && . ${ZSHRC}'
 alias ll='ls -la'
-alias confsh='zsh ${YAKAMON_SHCONF}/setup.sh && exec ${SHELL} -l'
 
 export LANG="en_GB.UTF-8"
 export PROMPT="%n@%m %F{4}%~%F{sgr0} $ "
@@ -39,12 +38,11 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
 # git
 export GITHUB="${GOSRC}/github.com"
 export YAKAMON="${GITHUB}/yakamon"
-export YAKAMON_ALGO="${YAKAMON}/algo"
-export YAKAMON_SHCONF="${YAKAMON}/shconf"
-export PATH="${PATH}:${YAKAMON_SHCONF}/bin"
+export DOTFILES="${YAKAMON}/dotfiles"
+export PATH="${PATH}:${DOTFILES}/bin"
 
 # load profiles
-for FILE in $(ls ${YAKAMON_SHCONF}/conf/*); do
+for FILE in $(ls ${DOTFILES}/conf/*); do
 	. ${FILE}
 done
 

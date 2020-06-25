@@ -86,13 +86,13 @@ function update_onload() {
 	local TODAY="$(date '+%Y-%m-%d')"
 
 	if [ ! -f "${UPDATE_HISTORY}" ]; then
-		update_all
-		touch ${UPDATE_HISTORY}
-		echo "${TODAY}" >>${UPDATE_HISTORY}
+		touch ${UPDATE_HISTORY} &&
+			echo "${TODAY}" >>${UPDATE_HISTORY} &&
+			update_all
 	fi
 
 	if [[ "${LAST_UPDATED_DATE}" < "${TODAY}" ]]; then
-		update_all
-		echo "${TODAY}" >>${UPDATE_HISTORY}
+		echo "${TODAY}" >>${UPDATE_HISTORY} &&
+			update_all
 	fi
 }
