@@ -1,4 +1,4 @@
-function acmkdir() {
+function atcodermkdir() {
     CONTEST_NAME="$1"
     PROBLEM_CODE="$2"
     INPUT_NUM="$3"
