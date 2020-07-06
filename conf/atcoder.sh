@@ -3,12 +3,12 @@ function atcodermkdir() {
     PROBLEM_CODE="$2"
 
     if [ $# -lt 1 ]; then
-        printf "usage: atcoder-mkdir <contest_name> <problem_code> <number_of_input_files>\n"
+        printf "usage: atcoder-mkdir <contest_name> <problem_code>\n"
         exit 0
     fi
 
-    if [ $INPUT_NUM -gt 26 ]; then
-        printf "too many input files.\n"
+    if [ $# -lt 2 ]; then
+        printf "too few arguments."
         exit 1
     fi
 
