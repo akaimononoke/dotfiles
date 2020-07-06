@@ -14,7 +14,4 @@ function atcodermkdir() {
     fi
 
     mkdir -p ${CONTEST_NAME}/${PROBLEM_CODE}/input
-    for i in {0..$((INPUT_NUM - 1))}; do
-        touch ${CONTEST_NAME}/${PROBLEM_CODE}/input/$(printf "%b\n" $(printf '%s%x' '\x' $((97 + i))))
-    done
 }
