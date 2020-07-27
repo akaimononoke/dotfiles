@@ -37,8 +37,8 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
 
 # git
 export GITHUB="${GOSRC}/github.com"
-export YAKAMON="${GITHUB}/yakamon"
-export DOTFILES="${YAKAMON}/dotfiles"
+export AKAIMONONOKE="${GITHUB}/akaimononoke"
+export DOTFILES="${AKAIMONONOKE}/dotfiles"
 export PATH="${PATH}:${DOTFILES}/bin"
 
 # load profiles
