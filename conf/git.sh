@@ -4,6 +4,7 @@ alias gbc='git_branch_checkout' # Git Branch Checkout
 alias gbd='git_branch_delete'   # Git Branch Delete
 alias gbs='git_branch_select'   # Git Branch Select
 alias gcd='git_commit_date'     # Git Commit with Date
+alias gd='git diff'             # Git Diff
 alias gf='git fetch'            # Git Fetch
 alias gl='git pull'             # Git pulL
 alias gp='git push'             # Git Push
