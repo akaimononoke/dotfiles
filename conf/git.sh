@@ -3,7 +3,7 @@ alias gb='git branch'           # Git Branch
 alias gbc='git_branch_checkout' # Git Branch Checkout
 alias gbd='git_branch_delete'   # Git Branch Delete
 alias gbs='git_branch_select'   # Git Branch Select
-alias gcd='git_commit_date'     # Git Commit with Date
+alias gc='git_commit'           # Git Commit
 alias gd='git diff'             # Git Diff
 alias gf='git fetch'            # Git Fetch
 alias gl='git pull'             # Git pulL
@@ -48,20 +48,18 @@ function git_branch_delete() {
 	[ $#B -gt 0 ] && git branch -d "${B[1]}"
 }
 
-function git_commit_date() {
-	if [ "$1" != "" ]; then
-		git commit -m "$(now) $1"
-	else
-		git commit -m "$(now)"
-	fi
+function git_commit() {
+	local message="$1"
+	local commit_message="$(echo "$(now) ${message}" | xargs echo -n)"
+	git commit -m "${commit_message}"
 }
 
 function git_checkout_files() {
-	local B=($(git_branch_select))
-	local CHECKOUT_LIST=($(cat $1))
-	if [ $#B -gt 0 ]; then
-		for CHECKOUT_PATH in ${CHECKOUT_LIST[*]}; do
-			git checkout ${B} ${CHECKOUT_PATH}
+	local branch=($(git_branch_select))
+	local checkout_list=($(cat $1))
+	if [ $#branch -gt 0 ]; then
+		for checkout_path in ${checkout_list[*]}; do
+			git checkout ${branch} ${checkout_path}
 		done
 	fi
 }
