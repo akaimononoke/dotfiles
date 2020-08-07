@@ -5,7 +5,8 @@ alias dossh='docker_ssh'
 alias doup='docker-compose up -d'
 
 function docker_ssh() {
-    local CONTAINER_NAME="$1"
-    local SHELL="$2"
-    docker exec -it "${CONTAINER_NAME}" "${SHELL}" -l
+    local container_name="$1"
+    local shell_name="$2"
+
+    docker exec -it "${container_name}" "${shell_name}" -l
 }

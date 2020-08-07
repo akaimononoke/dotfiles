@@ -41,9 +41,9 @@ export AKAIMONONOKE="${GITHUB}/akaimononoke"
 export DOTFILES="${AKAIMONONOKE}/dotfiles"
 export PATH="${PATH}:${DOTFILES}/bin"
 
-# load profiles
-for FILE in $(ls ${DOTFILES}/conf/*); do
-	. ${FILE}
+# copy my shells to ~/bin
+for file in $(ls ${DOTFILES}/profile.d/*); do
+	. ${file}
 done
 
 # update
