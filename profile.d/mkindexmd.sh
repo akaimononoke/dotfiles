@@ -30,8 +30,10 @@ function mkindexmd() {
 
         if [ "${par_basename}" != "" ] && ([ ! -f "${par_index_path}" ] || ! grep "${index_url}" <"${par_index_path}" >/dev/null); then
             echo "${index_url_md}" >>${par_index_path}
+            echo "index added: ${index_url} -> ${par_index_path}"
         fi
 
         echo "${file_url_md}" >>${index_path}
+        echo "index added: $(color magenta)${file_url}$(color) -> $(color blue)${index_path}$(color)"
     done
 }
