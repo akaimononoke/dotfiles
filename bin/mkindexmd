@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# remove existingindex.md
+# remove existing index.md
 function rmindexmd() { find . -type f -regex '^.*/index.md$' | xargs rm; }
 
 # find markdown files
