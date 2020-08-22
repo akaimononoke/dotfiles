@@ -15,32 +15,16 @@ function color() {
 		return 0
 	fi
 
-	for ARG in $*; do
+	for ARG in $@; do
 		case "${ARG}" in
-		black | bk)
-			printf ${CHAR_BLACK}
-			;;
-		red | r)
-			printf ${CHAR_RED}
-			;;
-		green | g)
-			printf ${CHAR_GREEN}
-			;;
-		blue | b)
-			printf ${CHAR_BLUE}
-			;;
-		magenta | m)
-			printf ${CHAR_MAGENTA}
-			;;
-		cyan | c)
-			printf ${CHAR_CYAN}
-			;;
-		white | w)
-			printf ${CHAR_WHITE}
-			;;
-		bold)
-			printf ${CHAR_BOLD}
-			;;
+		black | bk) printf ${CHAR_BLACK} ;;
+		red | r) printf ${CHAR_RED} ;;
+		green | g) printf ${CHAR_GREEN} ;;
+		blue | b) printf ${CHAR_BLUE} ;;
+		magenta | m) printf ${CHAR_MAGENTA} ;;
+		cyan | c) printf ${CHAR_CYAN} ;;
+		white | w) printf ${CHAR_WHITE} ;;
+		bold) printf ${CHAR_BOLD} ;;
 		esac
 	done
 }
