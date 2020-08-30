@@ -13,6 +13,9 @@ if type brew &>/dev/null; then
 	compinit -u
 fi
 
+# php
+[[ -e "${HOME}/.phpbrew/bashrc" ]] && source "${HOME}/.phpbrew/bashrc"
+
 # go
 export GOPATH="$(go env GOPATH)"
 export GOBIN="$(go env GOBIN)"
