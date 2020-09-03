@@ -1,4 +1,4 @@
-alias zp='zsh ${DOTFILES}/setup.sh && exec ${SHELL} -l && . ${ZPROFILE} && . ${ZSHRC}'
+alias zp='exec ${SHELL} -l && . ${ZPROFILE} && . ${ZSHRC}'
 alias ll='ls -la'
 
 export LANG="en_GB.UTF-8"

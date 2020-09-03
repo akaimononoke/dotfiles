@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+FILE_PATH="$1"
+
+acc submit $FILE_PATH $(go generate $FILE_PATH)
