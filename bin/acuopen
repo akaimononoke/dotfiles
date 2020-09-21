@@ -1,5 +1,5 @@
 #!/bin/zsh
-
+# acuopen: AtCoder URL Open
 USAGE="acuopen <contest_ids> <task_ids>"
 
 if [ $# -lt 2 ]; then

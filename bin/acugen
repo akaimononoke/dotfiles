@@ -1,5 +1,5 @@
 #!/bin/zsh
-
+# acugen: AtCoder URL Generate
 USAGE="acugen <contest_ids> <task_ids>"
 
 if [ $# -lt 2 ]; then
