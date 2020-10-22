@@ -50,6 +50,5 @@ for file in $(ls ${DOTFILES}/profile.d/*); do
 done
 
 # update
-if type update_onload &>/dev/null; then
-	update_onload
-fi
+# 色々不具合を引き起こすから一旦コメントアウト
+# if type update_onload &>/dev/null; then update_onload; fi
