@@ -1,3 +1,1 @@
-phpstorm() {
-    open -na "PhpStorm.app" --args "$@"
-}
+alias phpstorm='open -na "PhpStorm.app"'

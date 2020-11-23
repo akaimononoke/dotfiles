@@ -45,10 +45,4 @@ export DOTFILES="${KZMSHRT}/dotfiles"
 export PATH="${PATH}:${DOTFILES}/bin"
 
 # copy my shells to ~/bin
-for file in $(ls ${DOTFILES}/profile.d/*); do
-	. ${file}
-done
-
-# update
-# 色々不具合を引き起こすから一旦コメントアウト
-# if type update_onload &>/dev/null; then update_onload; fi
+for f in $(ls ${DOTFILES}/profile.d/*); do . $f; done
