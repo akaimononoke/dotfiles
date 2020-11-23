@@ -13,8 +13,9 @@ if type brew &>/dev/null; then
 	compinit -u
 fi
 
-# php
-[[ -e "${HOME}/.phpbrew/bashrc" ]] && source "${HOME}/.phpbrew/bashrc"
+# rust
+export CARGO_HOME="${HOME}/.cargo"
+export PATH="${PATH}:${CARGO_HOME}/bin"
 
 # go
 export GOPATH="$(go env GOPATH)"
@@ -30,9 +31,8 @@ if type pyenv &>/dev/null; then
 	eval "$(pyenv init -)"
 fi
 
-# rust
-export CARGO_HOME="${HOME}/.cargo"
-export PATH="${PATH}:${CARGO_HOME}/bin"
+# php
+[[ -e "${HOME}/.phpbrew/bashrc" ]] && source "${HOME}/.phpbrew/bashrc"
 
 # java
 export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home/bin
