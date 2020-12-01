@@ -46,3 +46,6 @@ export PATH="${PATH}:${DOTFILES}/bin"
 
 # copy my shells to ~/bin
 for f in $(ls ${DOTFILES}/profile.d/*); do . $f; done
+
+# postgresql
+export PGDATA=/usr/local/var/postgres
