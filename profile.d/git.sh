@@ -50,7 +50,7 @@ function git_branch_delete() {
 
 function git_commit() {
 	local message="$1"
-	local commit_message="$(echo "$(now) ${message}" | xargs echo -n)"
+	local commit_message="$(echo "$(date '+%Y-%m-%d %H:%M:%S') ${message}" | xargs echo -n)"
 	git commit -m "${commit_message}"
 }
 

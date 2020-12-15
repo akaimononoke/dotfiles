@@ -1,5 +1,10 @@
-alias zp='exec ${SHELL} -l && . ${ZPROFILE} && . ${ZSHRC}'
 alias ll='ls -la'
+
+function zp() {
+	exec $SHELL
+	. /Users/yakamon/.zprofile
+	. /Users/yakamon/.zshrc
+}
 
 export LANG="en_GB.UTF-8"
 export PROMPT="%n@%m %F{4}%~%F{sgr0} $ "
