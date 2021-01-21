@@ -46,7 +46,8 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
 # git
 export GITHUB="${GOSRC}/github.com"
 export KZMSHRT="${GITHUB}/kzmshrt"
-export DOTFILES="${KZMSHRT}/dotfiles"
+export PATEDEKAZU="${GITHUB}/patedekazu"
+export DOTFILES="${PATEDEKAZU}/dotfiles"
 export PATH="${PATH}:${DOTFILES}/bin"
 
 # copy my shells to ~/bin
