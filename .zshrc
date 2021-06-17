@@ -1,49 +1,39 @@
-alias ll='ls -la'
-
-function zp() {
-	exec $SHELL
-	. /Users/yakamon/.zprofile
-	. /Users/yakamon/.zshrc
-}
-
 export LANG="en_GB.UTF-8"
 export PROMPT="%n@%m %F{4}%~%F{sgr0} $ "
-export ZPROFILE="${HOME}/.zprofile"
-export ZSHRC="${HOME}/.zshrc"
 
 # zsh-completions
 if type brew &>/dev/null; then
 	FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
-	autoload -U compinit
+	autoload -Uz compinit
 	compinit -u
 fi
 
-# rust
+# Rust
 export CARGO_HOME="${HOME}/.cargo"
 export PATH="${PATH}:${CARGO_HOME}/bin"
 
-# go
+# Go
 export GOPATH="$(go env GOPATH)"
 export GOBIN="$(go env GOBIN)"
 export GOPKG="${GOPATH}/pkg"
 export GOSRC="${GOPATH}/src"
 export PATH="${PATH}:${GOBIN}"
 
-# pyenv
+# Python
 export PYENV_ROOT="/usr/local/var/pyenv"
 export PATH="${PATH}:${PYENV_ROOT}/bin"
 if type pyenv &>/dev/null; then
 	eval "$(pyenv init -)"
 fi
 
-# php
+# Php
 [[ -e "${HOME}/.phpbrew/bashrc" ]] && source "${HOME}/.phpbrew/bashrc"
 
-# java
+# Java
 export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
 
-# git
+# Git
 export GITHUB="${GOSRC}/github.com"
 export KZMSHRT="${GITHUB}/kzmshrt"
 export PATEDEKAZU="${GITHUB}/patedekazu"
