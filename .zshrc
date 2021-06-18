@@ -1,47 +1,100 @@
 export LANG="en_GB.UTF-8"
 export PROMPT="%n@%m %F{4}%~%F{sgr0} $ "
 
-# zsh-completions
+# ----- zsh-completions -----
 if type brew &>/dev/null; then
 	FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
 	autoload -Uz compinit
 	compinit -u
 fi
+# ----- zsh-completions -----
 
-# Rust
+# ----- git -----
+alias ga='git_add'
+alias gb='git branch'
+alias gbc='git_branch_checkout'
+alias gbd='git_branch_delete'
+alias gbs='git_branch_select'
+alias gc='git_commit'
+alias gd='git diff'
+alias gf='git fetch'
+alias gl='git pull'
+alias gp='git push'
+alias gs='git status'
+
+function git_add() {
+	if [[ "$@" != "" ]]; then
+		git add $@
+	else
+		git add --all
+	fi
+}
+
+function git_branch_checkout() {
+	local B=($(git_branch_select $1))
+	if [ $#B -le 0 ]; then
+		echo "No branch selected.\nCurrent branch: $(git_branch_current)"
+		return 1
+	fi
+
+	if [[ "${B[*]}" =~ "origin" ]]; then
+		git checkout --quiet -b "${B[(($#B))]}" "${B[(($#B - 1))]}/${B[(($#B))]}" >/dev/null
+	else
+		git checkout --quiet "${B[1]}"
+	fi
+
+	echo "Successfully checkouted.\nCurrent Branch: $(git_branch_current)"
+}
+
+function git_branch_select() {
+	[ "$1" != "" ] && git fetch -p
+	git branch $@ | sed -e 's/^[[:space:]]//' -e 's/^ //' -e '/\*/d' | peco | head -1 | sed 's/\// /g'
+}
+
+function git_branch_current() {
+	git branch | sed -e '/\*/!d' -e 's/\* //'
+}
+
+function git_branch_delete() {
+	local B=($(git_branch_select $1))
+	[ $#B -gt 0 ] && git branch -d "${B[1]}"
+}
+
+function git_commit() {
+	local message="$1"
+	local commit_message="$(echo "$(date '+%Y-%m-%d %H:%M:%S') ${message}" | xargs echo -n)"
+	git commit -m "${commit_message}"
+}
+# ----- git -----
+
+# ----- rust -----
 export CARGO_HOME="${HOME}/.cargo"
 export PATH="${PATH}:${CARGO_HOME}/bin"
+# ----- rust -----
 
-# Go
+# ----- go -----
 export GOPATH="$(go env GOPATH)"
 export GOBIN="$(go env GOBIN)"
 export GOPKG="${GOPATH}/pkg"
 export GOSRC="${GOPATH}/src"
 export PATH="${PATH}:${GOBIN}"
+# ----- go -----
 
-# Python
-export PYENV_ROOT="/usr/local/var/pyenv"
-export PATH="${PATH}:${PYENV_ROOT}/bin"
-if type pyenv &>/dev/null; then
-	eval "$(pyenv init -)"
-fi
+# ----- nodejs -----
+export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
+# ----- nodejs -----
 
-# Php
-[[ -e "${HOME}/.phpbrew/bashrc" ]] && source "${HOME}/.phpbrew/bashrc"
+# ----- python -----
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="${PYENV_ROOT}/bin:${PATH}"
+eval "$(pyenv init --path)"
+# ----- python -----
 
-# Java
-export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home/bin
+# ----- java -----
+export PATH="${PATH}:/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home/bin"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
+# ----- java -----
 
-# Git
-export GITHUB="${GOSRC}/github.com"
-export KZMSHRT="${GITHUB}/kzmshrt"
-export PATEDEKAZU="${GITHUB}/patedekazu"
-export DOTFILES="${PATEDEKAZU}/dotfiles"
-export PATH="${PATH}:${DOTFILES}/bin"
-
-# copy my shells to ~/bin
-for f in $(ls ${DOTFILES}/profile.d/*); do . $f; done
-
-# postgresql
+# ----- postgresql -----
 export PGDATA=/usr/local/var/postgres
+# ----- postgresql -----
