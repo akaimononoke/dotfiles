@@ -1,13 +1,19 @@
 export LANG="en_GB.UTF-8"
 export PROMPT="%n@%m %F{4}%~%F{sgr0} $ "
 
-# -------------------------------------------------- zsh --------------------------------------------------
-if type brew &>/dev/null; then
-	FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
-	autoload -Uz compinit
-	compinit -u
-fi
-# -------------------------------------------------- zsh --------------------------------------------------
+export PATH="$HOME/bin:$PATH"
+
+# -------------------------------------------------- zsh completions --------------------------------------------------
+FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
+FPATH="$HOME/.zsh-completions:$FPATH"
+autoload -Uz compinit
+compinit -u
+
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
+# -------------------------------------------------- zsh completions --------------------------------------------------
 
 # -------------------------------------------------- binutils --------------------------------------------------
 export PATH="/usr/local/opt/binutils/bin:${PATH}"

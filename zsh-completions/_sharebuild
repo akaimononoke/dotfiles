@@ -1,0 +1,46 @@
+#compdef sharebuild
+
+function _sharebuild() {
+    local context curcontext=$curcontext state line
+    declare -A opt_args
+
+    _arguments -C \
+        '(--help -h)'{--help,-h}'[Show help message and exit]' \
+        '1: :->commands' \
+        '*:: :->args'
+
+    case "$state" in
+    commands)
+        _values 'command' \
+            'create[Create environment]' \
+            'destroy[Destroy environment]' \
+            'list[List environment ID]' \
+            'login[Login to environment]'
+        ;;
+    args)
+        case $words[1] in
+        create)
+            _arguments -C \
+                '(--help -h)'{--help,-h}'[Show help message and exit]'
+            ;;
+        destroy)
+            _arguments -C \
+                '(--help -h)'{--help,-h}'[Show help message and exit]' \
+                "1:env_id:($(sharebuild list))"
+            ;;
+        list)
+            _arguments -C \
+                '(--help -h)'{--help,-h}'[Show help message and exit]' \
+                '(--local -l)'{--local,-l}'[List environment ID stored in local]' \
+                '(--remote -r)'{--remote,-r}'[List environment ID running on remote]' \
+                '1:subcommand:((refresh:"Remove IDs of inactive environments from local ID list"))'
+            ;;
+        login)
+            _arguments -C \
+                '(--help -h)'{--help,-h}'[Show help message and exit]' \
+                "1:env_id:($(sharebuild list))"
+            ;;
+        esac
+        ;;
+    esac
+}
