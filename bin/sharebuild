@@ -1,3 +1,12 @@
 #!/bin/zsh
 
-echo hello
+case $1 in
+list)
+    echo 'a'
+    echo 'b'
+    echo 'c'
+    echo 'd'
+    echo 'e'
+    echo 'f'
+    ;;
+esac
